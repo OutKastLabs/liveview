@@ -16,7 +16,7 @@ config :reactor, ReactorWeb.Endpoint,
   secret_key_base: "5IzxKTWc7pV/bOTiJ2UdmV9T0qH5a+/pGBR24gPOb32JC0bTpqtBxRC/6slUW51H",
   render_errors: [view: ReactorWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Reactor.PubSub,
-  live_view: [signing_salt: "dlm/6TP0"]
+  live_view: [signing_salt: "lOQNz0A324CYU2ZnWqZwvSTsIfuMyW1S"]
 
 # Configures Elixir's Logger
 config :logger, :console,
