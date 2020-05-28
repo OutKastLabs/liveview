@@ -23,6 +23,7 @@ defmodule ReactorWeb do
 
       import Plug.Conn
       import ReactorWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias ReactorWeb.Router.Helpers, as: Routes
     end
   end
