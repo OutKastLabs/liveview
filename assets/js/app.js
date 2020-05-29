@@ -15,5 +15,5 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 
-let LiveSocket = new LiveSocket("/live", Socket);
-LiveSocket.connect();
+let liveSocket = new LiveSocket("/live", Socket);
+liveSocket.connect();
