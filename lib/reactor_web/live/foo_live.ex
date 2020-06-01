@@ -8,7 +8,7 @@ defmodule ReactorWeb.FooLive do
   def render(assigns) do
     ~L"""
     <h1>Hi!</h1>
-    <div phx-keydown="keydown" phx-target="window">
+    <div phx-window-keydown="keydown">
      <%= @msg %>
     </div>
     """
