@@ -46,4 +46,8 @@ defmodule Reactor.Coordinate do
   def set_in_island(coordinate, value) when is_atom value do
     Agent.update(coordinate, fn state -> Map.put(state, :in_island, value) end)
   end
+
+  def to_string(coordinate) do
+  "(in_island:#{island(coordinate)}, guessed:#{guessed?(coordinate)})"
+  end
 end
