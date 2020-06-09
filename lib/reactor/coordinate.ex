@@ -19,4 +19,12 @@ defmodule Reactor.Coordinate do
   # take the agent PID, an anonymous function to manipulate the state, and an optional timeout value which defaults to 5000 milliseconds.
   # The five arity forms take the agent PID, a module name, a function name, arguments,
   # and an optional timeout value just like the three arity version.
+
+  def guessed?(coordinate) do
+    Agent.get(coordinate, fn state -> state.guessed? end)
+  end
+
+  def island(coordinate) do
+    Agent.get(coordinate, fn state -> state.in_island end)
+  end
 end
