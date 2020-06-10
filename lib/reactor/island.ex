@@ -14,4 +14,13 @@ defmodule Reactor.Island do
     |> Agent.get(fn state -> state end)
     |> Enum.all?(fn coord -> Coordinate.hit?(coord) end)
   end
+
+  def to_string(island) do
+    "[" <> coordinate_strings(island) <> "]"
+  end
+
+  defp coordinate_strings(island) do island
+    |> Agent.get(fn state -> state end)
+    |> Enum.map(fn coord -> Coordinate.to_string(coord) end) |> Enum.join(", ")
+  end
 end
