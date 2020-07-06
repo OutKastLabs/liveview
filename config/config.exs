@@ -7,6 +7,16 @@
 # General application configuration
 use Mix.Config
 
+config :reactor, Reactor.Robot,
+  adapter: Hedwig.Adapters.Console,
+  name: "Siddhant",
+  aka: "/",
+  responders: [
+    {Hedwig.Responders.Help, []},
+    {Hedwig.Responders.Ping, []}
+  ]
+
+
 config :reactor,
   ecto_repos: [Reactor.Repo]
 
