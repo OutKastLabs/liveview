@@ -10,12 +10,14 @@ defmodule Reactor.Board do
 
   defp keys() do
     for letter <- @letters, number <- @numbers do
-    String.to_atom("#{letter}#{number}") end
+      String.to_atom("#{letter}#{number}")
+    end
   end
 
   defp initialized_board() do
-    Enum.reduce(keys(), %{}, fn(key, board) ->
-    {:ok, coord} = Coordinate.start_link
-    Map.put_new(board, key, coord) end )
+    Enum.reduce(keys(), %{}, fn key, board ->
+      {:ok, coord} = Coordinate.start_link()
+      Map.put_new(board, key, coord)
+    end)
   end
 end

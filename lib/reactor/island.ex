@@ -3,14 +3,15 @@ defmodule Reactor.Island do
   alias Reactor.Coordinate
 
   def start_link() do
-   Agent.start_link(fn -> [] end)
+    Agent.start_link(fn -> [] end)
   end
 
-  def replace_coordinates(island, new_coordinates) when is_list new_coordinates do
-   Agent.update(island, fn _state -> new_coordinates end)
+  def replace_coordinates(island, new_coordinates) when is_list(new_coordinates) do
+    Agent.update(island, fn _state -> new_coordinates end)
   end
 
-  def forested?(island) do island
+  def forested?(island) do
+    island
     |> Agent.get(fn state -> state end)
     |> Enum.all?(fn coord -> Coordinate.hit?(coord) end)
   end
@@ -19,8 +20,10 @@ defmodule Reactor.Island do
     "[" <> coordinate_strings(island) <> "]"
   end
 
-  defp coordinate_strings(island) do island
+  defp coordinate_strings(island) do
+    island
     |> Agent.get(fn state -> state end)
-    |> Enum.map(fn coord -> Coordinate.to_string(coord) end) |> Enum.join(", ")
+    |> Enum.map(fn coord -> Coordinate.to_string(coord) end)
+    |> Enum.join(", ")
   end
 end
