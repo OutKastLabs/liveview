@@ -47,7 +47,8 @@ defmodule Reactor.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_view, "~> 0.13.0"},
       {:git_hooks, "~> 0.4.0", only: [:test, :dev], runtime: false},
-      {:hedwig, "~> 1.0"}
+      {:hedwig, "~> 1.0"},
+      {:crawly, "~> 0.10.0"}
     ]
   end
 
