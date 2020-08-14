@@ -21,6 +21,7 @@ defmodule ReactorWeb.Router do
     get "/", PageController, :index
     live "/foo", FooLive
     live "/thermostat", ThermostatLive
+    live "/light", LightLive
   end
 
   # Other scopes may use custom stacks.

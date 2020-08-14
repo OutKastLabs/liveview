@@ -4,7 +4,7 @@ use Mix.Config
 config :reactor, Reactor.Repo,
   username: "postgres",
   password: "postgres",
-  database: "reactor_dev",
+  database: "reactor",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
