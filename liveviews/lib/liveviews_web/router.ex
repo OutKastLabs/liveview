@@ -20,6 +20,7 @@ defmodule LiveviewsWeb.Router do
     live "/", PageLive, :index
     live "/light", LightLive
     live "/license", LicenseLive
+    live "/sales-dashboard", SalesDashboardLive
   end
 
   # Other scopes may use custom stacks.
