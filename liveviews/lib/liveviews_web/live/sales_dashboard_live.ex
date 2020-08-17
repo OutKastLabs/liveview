@@ -4,6 +4,7 @@ defmodule LiveviewsWeb.SalesDashboardLive do
 
   def mount(_params, _session, socket) do
     IO.inspect(connected?(socket))
+
     if connected?(socket) do
       :timer.send_interval(1000, self(), :tick)
     end
