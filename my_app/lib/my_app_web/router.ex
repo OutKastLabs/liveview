@@ -19,6 +19,7 @@ defmodule MyAppWeb.Router do
 
     live "/", PageLive, :index
     live "/search", SearchLive
+    live "/autocomplete", AutocompleteLive
   end
 
   # Other scopes may use custom stacks.
