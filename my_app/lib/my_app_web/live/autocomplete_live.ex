@@ -1,10 +1,10 @@
 defmodule MyAppWeb.AutocompleteLive do
-    use MyAppWeb, :live_view
+  use MyAppWeb, :live_view
 
-    alias MyApp.Stores 
-    alias MyApp.Cities
+  alias MyApp.Stores
+  alias MyApp.Cities
 
-    def mount(_params, _session, socket) do
+  def mount(_params, _session, socket) do
     socket =
       assign(socket,
         zip: "",
