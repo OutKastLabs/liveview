@@ -11,6 +11,5 @@ defmodule Chirp.Repo.Migrations.CreatePost do
 
       timestamps()
     end
-
   end
 end
