@@ -1,7 +1,7 @@
 defmodule ChirpWeb.PostLive.Show do
   use ChirpWeb, :live_view
 
-  alias Chirp.Timeline
+  alias Chirp.Blog
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,7 +13,7 @@ defmodule ChirpWeb.PostLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:post, Timeline.get_post!(id))}
+     |> assign(:post, Blog.get_post!(id))}
   end
 
   defp page_title(:show), do: "Show Post"

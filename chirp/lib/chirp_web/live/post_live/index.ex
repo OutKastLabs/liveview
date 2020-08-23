@@ -1,12 +1,12 @@
 defmodule ChirpWeb.PostLive.Index do
   use ChirpWeb, :live_view
 
-  alias Chirp.Timeline
-  alias Chirp.Timeline.Post
+  alias Chirp.Blog
+  alias Chirp.Blog.Post
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :post_collection, list_post())}
+    {:ok, assign(socket, :posts, list_posts())}
   end
 
   @impl true
@@ -17,7 +17,7 @@ defmodule ChirpWeb.PostLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Post")
-    |> assign(:post, Timeline.get_post!(id))
+    |> assign(:post, Blog.get_post!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -28,19 +28,19 @@ defmodule ChirpWeb.PostLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Post")
+    |> assign(:page_title, "Listing Posts")
     |> assign(:post, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    post = Timeline.get_post!(id)
-    {:ok, _} = Timeline.delete_post(post)
+    post = Blog.get_post!(id)
+    {:ok, _} = Blog.delete_post(post)
 
-    {:noreply, assign(socket, :post_collection, list_post())}
+    {:noreply, assign(socket, :posts, list_posts())}
   end
 
-  defp list_post do
-    Timeline.list_post()
+  defp list_posts do
+    Blog.list_posts()
   end
 end

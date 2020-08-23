@@ -3,26 +3,14 @@ defmodule ChirpWeb.PostLiveTest do
 
   import Phoenix.LiveViewTest
 
-  alias Chirp.Timeline
+  alias Chirp.Blog
 
-  @create_attrs %{
-    body: "some body",
-    likes_count: 42,
-    posts: "some posts",
-    reposts_count: 42,
-    username: "some username"
-  }
-  @update_attrs %{
-    body: "some updated body",
-    likes_count: 43,
-    posts: "some updated posts",
-    reposts_count: 43,
-    username: "some updated username"
-  }
-  @invalid_attrs %{body: nil, likes_count: nil, posts: nil, reposts_count: nil, username: nil}
+  @create_attrs %{author: "some author", body: "some body", date: "some date", name: "some name", response: "some response", vote: 42}
+  @update_attrs %{author: "some updated author", body: "some updated body", date: "some updated date", name: "some updated name", response: "some updated response", vote: 43}
+  @invalid_attrs %{author: nil, body: nil, date: nil, name: nil, response: nil, vote: nil}
 
   defp fixture(:post) do
-    {:ok, post} = Timeline.create_post(@create_attrs)
+    {:ok, post} = Blog.create_post(@create_attrs)
     post
   end
 
@@ -34,11 +22,11 @@ defmodule ChirpWeb.PostLiveTest do
   describe "Index" do
     setup [:create_post]
 
-    test "lists all post", %{conn: conn, post: post} do
+    test "lists all posts", %{conn: conn, post: post} do
       {:ok, _index_live, html} = live(conn, Routes.post_index_path(conn, :index))
 
-      assert html =~ "Listing Post"
-      assert html =~ post.body
+      assert html =~ "Listing Posts"
+      assert html =~ post.author
     end
 
     test "saves new post", %{conn: conn} do
@@ -60,7 +48,7 @@ defmodule ChirpWeb.PostLiveTest do
         |> follow_redirect(conn, Routes.post_index_path(conn, :index))
 
       assert html =~ "Post created successfully"
-      assert html =~ "some body"
+      assert html =~ "some author"
     end
 
     test "updates post in listing", %{conn: conn, post: post} do
@@ -82,7 +70,7 @@ defmodule ChirpWeb.PostLiveTest do
         |> follow_redirect(conn, Routes.post_index_path(conn, :index))
 
       assert html =~ "Post updated successfully"
-      assert html =~ "some updated body"
+      assert html =~ "some updated author"
     end
 
     test "deletes post in listing", %{conn: conn, post: post} do
@@ -100,7 +88,7 @@ defmodule ChirpWeb.PostLiveTest do
       {:ok, _show_live, html} = live(conn, Routes.post_show_path(conn, :show, post))
 
       assert html =~ "Show Post"
-      assert html =~ post.body
+      assert html =~ post.author
     end
 
     test "updates post within modal", %{conn: conn, post: post} do
@@ -122,7 +110,7 @@ defmodule ChirpWeb.PostLiveTest do
         |> follow_redirect(conn, Routes.post_show_path(conn, :show, post))
 
       assert html =~ "Post updated successfully"
-      assert html =~ "some updated body"
+      assert html =~ "some updated author"
     end
   end
 end

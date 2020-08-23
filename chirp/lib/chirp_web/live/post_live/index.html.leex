@@ -1,4 +1,4 @@
-<h1>Listing Post</h1>
+<h1>Listing Posts</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <%= live_modal @socket, ChirpWeb.PostLive.FormComponent,
@@ -12,23 +12,25 @@
 <table>
   <thead>
     <tr>
-      <th>Posts</th>
-      <th>Username</th>
+      <th>Name</th>
       <th>Body</th>
-      <th>Likes count</th>
-      <th>Reposts count</th>
+      <th>Vote</th>
+      <th>Author</th>
+      <th>Response</th>
+      <th>Date</th>
 
       <th></th>
     </tr>
   </thead>
-  <tbody id="post">
-    <%= for post <- @post_collection do %>
+  <tbody id="posts">
+    <%= for post <- @posts do %>
       <tr id="post-<%= post.id %>">
-        <td><%= post.posts %></td>
-        <td><%= post.username %></td>
+        <td><%= post.name %></td>
         <td><%= post.body %></td>
-        <td><%= post.likes_count %></td>
-        <td><%= post.reposts_count %></td>
+        <td><%= post.vote %></td>
+        <td><%= post.author %></td>
+        <td><%= post.response %></td>
+        <td><%= post.date %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.post_show_path(@socket, :show, post) %></span>

@@ -1,11 +1,11 @@
 defmodule ChirpWeb.PostLive.FormComponent do
   use ChirpWeb, :live_component
 
-  alias Chirp.Timeline
+  alias Chirp.Blog
 
   @impl true
   def update(%{post: post} = assigns, socket) do
-    changeset = Timeline.change_post(post)
+    changeset = Blog.change_post(post)
 
     {:ok,
      socket
@@ -17,7 +17,7 @@ defmodule ChirpWeb.PostLive.FormComponent do
   def handle_event("validate", %{"post" => post_params}, socket) do
     changeset =
       socket.assigns.post
-      |> Timeline.change_post(post_params)
+      |> Blog.change_post(post_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -28,7 +28,7 @@ defmodule ChirpWeb.PostLive.FormComponent do
   end
 
   defp save_post(socket, :edit, post_params) do
-    case Timeline.update_post(socket.assigns.post, post_params) do
+    case Blog.update_post(socket.assigns.post, post_params) do
       {:ok, _post} ->
         {:noreply,
          socket
@@ -41,7 +41,7 @@ defmodule ChirpWeb.PostLive.FormComponent do
   end
 
   defp save_post(socket, :new, post_params) do
-    case Timeline.create_post(post_params) do
+    case Blog.create_post(post_params) do
       {:ok, _post} ->
         {:noreply,
          socket
